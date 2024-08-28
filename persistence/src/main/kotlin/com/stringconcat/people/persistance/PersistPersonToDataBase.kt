@@ -7,12 +7,8 @@ import com.stringconcat.people.useCasePeople.PersistPerson
 import org.springframework.stereotype.Component
 
 @Component
-class PersistPersonToDataBase(
-    private val repository: PersonRepository
-) : PersistPerson {
+class PersistPersonToDataBase(private val repository: PersonRepository) : PersistPerson {
     override fun persist(person: Person) {
-        repository
-            .save(PersonEntity.fromBusiness(person))
-            .let { PersonEntity.toBusiness(it) }
+        repository.save(PersonEntity.fromBusiness(person)).let { PersonEntity.toBusiness(it) }
     }
 }

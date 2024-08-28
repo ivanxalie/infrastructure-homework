@@ -17,7 +17,10 @@ fun renderDetailedView(person: PersonRespectfullViewModel): String =
             body {
                 div(classes = "header") {
                     h1 {
-                        img(src = person.avatarUrl()) { height = "48"; width = "48" }
+                        img(src = person.avatarUrl()) {
+                            height = "48"
+                            width = "48"
+                        }
                         +person.title()
                     }
                 }
@@ -26,4 +29,5 @@ fun renderDetailedView(person: PersonRespectfullViewModel): String =
                     p { +"Favorite quote: ${person.favoriteQuote()}" }
                 }
             }
-        }.toString()
+        }
+        .toString()

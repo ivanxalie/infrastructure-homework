@@ -8,23 +8,22 @@ const val DEFAULT_ROBOT_AVATAR = "https://avatars.dicebear.com/v2/bottts/not%20f
 const val MATURE_AGE = 40
 
 data class Person(
-        val id: UUID = UUID.randomUUID(),
-        val firstName: String,
-        val secondName: String,
-        val birthDate: LocalDate,
-        val sex: Sex,
-        var avatartUrl: String = DEFAULT_ROBOT_AVATAR,
-        val favoriteQuote: String
+    val id: UUID = UUID.randomUUID(),
+    val firstName: String,
+    val secondName: String,
+    val birthDate: LocalDate,
+    val sex: Sex,
+    var avatartUrl: String = DEFAULT_ROBOT_AVATAR,
+    val favoriteQuote: String
 ) {
 
-    fun mature(forDate: LocalDate = LocalDate.now()): Boolean =
-            age(forDate) > MATURE_AGE
+    fun mature(forDate: LocalDate = LocalDate.now()): Boolean = age(forDate) > MATURE_AGE
 
-    fun age(forDate: LocalDate = LocalDate.now()): Year =
-            Period.between(forDate, birthDate).years
+    fun age(forDate: LocalDate = LocalDate.now()): Year = Period.between(forDate, birthDate).years
 
     enum class Sex {
-        MAN, WOMAN
+        MAN,
+        WOMAN
     }
 
     fun changeAvatar(pictureUrl: String) {

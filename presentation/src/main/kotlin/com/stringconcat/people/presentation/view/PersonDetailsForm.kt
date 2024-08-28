@@ -18,17 +18,21 @@ fun personDetailsForm(): String =
         .html {
             bootstrapHeader()
             body {
-                div(classes = "header") {
-                    h1 { +"Create a new person" }
-                }
+                div(classes = "header") { h1 { +"Create a new person" } }
                 div("body") {
                     form(action = "/generate", method = FormMethod.post) {
-                        p { +"First name " }; textInput(name = "firstName")
-                        p { +"Last name " }; textInput(name = "secondName")
-                        p { +"Birthdate " }; dateInput(name = "birthDate")
-                        p { +"Gender " }; textInput(name = "gender")
-                        p { +"" }; submitInput()
+                        p { +"First name " }
+                        textInput(name = "firstName")
+                        p { +"Last name " }
+                        textInput(name = "secondName")
+                        p { +"Birthdate " }
+                        dateInput(name = "birthDate")
+                        p { +"Gender " }
+                        textInput(name = "gender")
+                        p { +"" }
+                        submitInput()
                     }
                 }
             }
-        }.toString()
+        }
+        .toString()
