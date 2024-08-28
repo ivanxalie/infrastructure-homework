@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+
+  people:
+    image: stringconcat/people:latest
+    ports:
+      - "8080:8080"
+      - "7000:7000"
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_PASSWORD=people
+      - POSTGRES_USER=people
+      - POSTGRES_DB=people
+      - POSTGRES_INITDB_ARGS="--auth=md5"
+    ports:
+      - "5434:5432"
+
+  portainer:
+    image: portainer/portainer:1.25.0 # downgraded because new version doesn't have --no-auth flag
+    ports:
+      - 9001:9000
+    command: --host unix:///var/run/docker.sock --tlsskipverify --no-auth
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOCKER_SOCKET:-/var/run/docker.sock}:/var/run/docker.sock:ro
+
+  pgadmin:
+    restart: always
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@people.com
+      - PGADMIN_DEFAULT_PASSWORD=people
+    depends_on:
+      - postgres
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "/bin/echo '*:5432:people:people:people' > /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && /entrypoint.sh"
+    volumes:
+      - ./docker/servers.json:/pgadmin4/servers.json
+    ports:
+      - "5444:80"
