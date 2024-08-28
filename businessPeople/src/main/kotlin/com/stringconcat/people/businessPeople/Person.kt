@@ -5,6 +5,7 @@ import java.time.Period
 import java.util.*
 
 const val DEFAULT_ROBOT_AVATAR = "https://avatars.dicebear.com/v2/bottts/not%20found.svg"
+const val MATURE_AGE = 40
 
 data class Person(
         val id: UUID = UUID.randomUUID(),
@@ -17,8 +18,7 @@ data class Person(
 ) {
 
     fun mature(forDate: LocalDate = LocalDate.now()): Boolean =
-            age(forDate) > 40
-
+            age(forDate) > MATURE_AGE
 
     fun age(forDate: LocalDate = LocalDate.now()): Year =
             Period.between(forDate, birthDate).years

@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component
 
 @Component
 class PersistPersonToDataBase(
-        private val repository: PersonRepository
-): PersistPerson {
+    private val repository: PersonRepository
+) : PersistPerson {
     override fun persist(person: Person) {
         repository
-                .save(PersonEntity.fromBusiness(person))
-                .let { PersonEntity.toBusiness(it) }
+            .save(PersonEntity.fromBusiness(person))
+            .let { PersonEntity.toBusiness(it) }
     }
 }
