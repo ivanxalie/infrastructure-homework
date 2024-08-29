@@ -1,6 +1,6 @@
 package com.stringconcat.people.presentation.view
 
-import com.stringconcat.people.presentation.model.PersonRespectfullViewModel
+import com.stringconcat.people.presentation.model.PersonRespectfullyViewModel
 import kotlinx.html.body
 import kotlinx.html.div
 import kotlinx.html.h1
@@ -9,7 +9,7 @@ import kotlinx.html.img
 import kotlinx.html.p
 import kotlinx.html.stream.appendHTML
 
-fun renderDetailedView(person: PersonRespectfullViewModel): String =
+fun renderDetailedView(person: PersonRespectfullyViewModel): String =
     StringBuilder()
         .appendHTML()
         .html {

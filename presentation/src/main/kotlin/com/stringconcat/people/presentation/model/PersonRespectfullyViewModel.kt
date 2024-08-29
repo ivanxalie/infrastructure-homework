@@ -2,7 +2,7 @@ package com.stringconcat.people.presentation.model
 
 import com.stringconcat.people.businessPeople.Person
 
-class PersonRespectfullViewModel(private val person: Person) {
+class PersonRespectfullyViewModel(private val person: Person) {
 
     fun title() = "${prefixIfNeeded()} ${person.firstName} ${person.secondName}"
 
@@ -16,7 +16,7 @@ class PersonRespectfullViewModel(private val person: Person) {
             ""
         }
 
-    fun avatarUrl() = person.avatartUrl
+    fun avatarUrl() = person.avatarUrl
 
     fun birthDate() =
         "${person.birthDate.dayOfMonth} ${person.birthDate.month} ${person.birthDate.year}"

@@ -1,6 +1,6 @@
 package com.stringconcat.people.presentation.controller
 
-import com.stringconcat.people.presentation.model.PersonRespectfullViewModel
+import com.stringconcat.people.presentation.model.PersonRespectfullyViewModel
 import com.stringconcat.people.presentation.view.personDetailsForm
 import com.stringconcat.people.presentation.view.renderDetailedView
 import com.stringconcat.people.useCasePeople.CreateNewPersonUseCase
@@ -28,7 +28,7 @@ class PeopleController(
     @RequestMapping(value = ["/me"], method = [RequestMethod.GET])
     @ResponseBody
     fun me(): String {
-        return renderDetailedView(person = PersonRespectfullViewModel(getMe()))
+        return renderDetailedView(person = PersonRespectfullyViewModel(getMe()))
     }
 
     @RequestMapping(value = ["/id/{id}"])
@@ -42,7 +42,7 @@ class PeopleController(
 
         val person = getPerson(idUUD) ?: return ResponseEntity.badRequest().build()
 
-        return ResponseEntity.ok(renderDetailedView(PersonRespectfullViewModel(person)))
+        return ResponseEntity.ok(renderDetailedView(PersonRespectfullyViewModel(person)))
     }
 
     @RequestMapping(value = ["/generate"], method = [RequestMethod.GET])
