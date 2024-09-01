@@ -1,4 +1,6 @@
-plugins { kotlin("jvm") }
+plugins {
+    kotlin("jvm")
+}
 
 java.sourceCompatibility = JavaVersion.VERSION_11
 

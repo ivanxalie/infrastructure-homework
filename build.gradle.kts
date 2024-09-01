@@ -1,4 +1,3 @@
-import com.diffplug.gradle.spotless.SpotlessExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 project.base.archivesName.set("people")
@@ -8,11 +7,15 @@ plugins {
     kotlin("jvm") version "1.9.0"
     kotlin("plugin.spring") version "1.9.0"
     id("org.jetbrains.kotlin.plugin.jpa") version "1.9.0" apply false
-    id("com.diffplug.spotless") version "6.25.0" apply false
+    id("io.gitlab.arturbosch.detekt") version "1.23.1"
 }
 
 allprojects {
     group = "com.stringconcat"
+
+    apply {
+        plugin("io.gitlab.arturbosch.detekt")
+    }
 
     repositories {
         mavenCentral()
@@ -26,6 +29,15 @@ allprojects {
         }
     }
 
+    tasks.detekt {
+        reports.html.required.set(true)
+        buildUponDefaultConfig = true
+        config = files("${parent?.projectDir ?: projectDir}/detekt-config.yml")
+        dependencies {
+            detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.1")
+        }
+    }
+
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -33,26 +45,8 @@ allprojects {
             allWarningsAsErrors = true
         }
     }
-}
 
-subprojects {
-    apply(plugin = "com.diffplug.spotless")
 
-    configure<SpotlessExtension> {
-        kotlin {
-            ktfmt().kotlinlangStyle().configure {
-                it.setMaxWidth(100)
-                it.setBlockIndent(4)
-            }
-            endWithNewline()
-            toggleOffOn()
-        }
-        kotlinGradle {
-            target("*.gradle.kts")
-            ktfmt().kotlinlangStyle()
-            endWithNewline()
-        }
-    }
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_11
@@ -76,7 +70,7 @@ dependencies {
     // dev tools
     developmentOnly("org.springframework.boot:spring-boot-devtools:2.7.14")
 
-    // persistance
+    //persistance
     implementation("org.postgresql:postgresql:42.3.4")
     implementation("org.liquibase:liquibase-core:4.9.1")
 
@@ -88,4 +82,6 @@ dependencies {
     testImplementation("io.projectreactor:reactor-test")
 }
 
-tasks.test { useJUnitPlatform() }
+tasks.test {
+    useJUnitPlatform()
+}

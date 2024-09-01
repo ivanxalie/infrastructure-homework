@@ -10,21 +10,21 @@ class CreateNewPersonUseCase(
     private val persistPerson: PersistPerson,
     private val personGenerator: PersonGenerator
 ) {
-    operator fun invoke(personInput: PersonCreationSummary): Person {
-        val inputSex =
-            when (personInput.gender.lowercase()) {
-                "male" -> Person.Sex.MAN
-                "female" -> Person.Sex.WOMAN
-                else -> Person.Sex.MAN
-            }
+    operator fun invoke(
+        personInput: PersonCreationSummary
+    ): Person {
+        val inputSex = when (personInput.gender.lowercase()) {
+            "male" -> Person.Sex.MAN
+            "female" -> Person.Sex.WOMAN
+            else -> Person.Sex.MAN
+        }
 
-        val generatedPerson =
-            personGenerator.generate(
-                firstName = personInput.firstName,
-                secondName = personInput.secondName,
-                birthDate = LocalDate.parse(personInput.birthDate),
-                sex = inputSex
-            )
+        val generatedPerson = personGenerator.generate(
+            firstName = personInput.firstName,
+            secondName = personInput.secondName,
+            birthDate = LocalDate.parse(personInput.birthDate),
+            sex = inputSex
+        )
 
         persistPerson.persist(generatedPerson)
 

@@ -10,11 +10,12 @@ dependencies {
     implementation(project(":useCasePeople"))
     implementation("org.springframework.boot:spring-boot-starter-web:2.7.14")
 
+
     // tools
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.0")
 
     // view
-    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.10.1")
+    implementation( "org.jetbrains.kotlinx:kotlinx-html-jvm:0.10.1")
 
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")

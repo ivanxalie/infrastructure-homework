@@ -2,11 +2,11 @@ package com.stringconcat.people.quotesGarden
 
 import com.stringconcat.people.businessPeople.Quote
 import com.stringconcat.people.businessPeople.QuotesProvider
-import javax.inject.Named
 import org.springframework.http.HttpStatus
 import org.springframework.http.client.ClientHttpResponse
 import org.springframework.web.client.ResponseErrorHandler
 import org.springframework.web.client.RestTemplate
+import javax.inject.Named
 
 const val DEFAULT_QUOTE = "whoops, something went wrong"
 
@@ -30,11 +30,11 @@ class QuoteGardenProvider : QuotesProvider {
     }
 
     internal data class QuoteResponse(
-        val quoteText: String,
-        val quoteAuthor: String,
-        val senderName: String,
-        val senderLink: String,
-        val quoteLink: String
+            val quoteText: String,
+            val quoteAuthor: String,
+            val senderName: String,
+            val senderLink: String,
+            val quoteLink: String
     )
 }
 
