@@ -8,6 +8,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.0"
     id("org.jetbrains.kotlin.plugin.jpa") version "1.9.0" apply false
     id("io.gitlab.arturbosch.detekt") version "1.23.1"
+    id("com.github.ben-manes.versions") version "0.48.0"
 }
 
 allprojects {
@@ -45,8 +46,6 @@ allprojects {
             allWarningsAsErrors = true
         }
     }
-
-
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_11
