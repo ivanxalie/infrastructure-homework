@@ -92,7 +92,6 @@ release {
     preTagCommitMessage = "[Gradle Release Plugin] - creating tag: " // Сообщение коммита перед созданием тега
     tagTemplate = "\${version}" // Шаблон для имени тега
     newVersionCommitMessage = "[Gradle Release Plugin] - new version commit: " // Сообщение коммита с новой версией
-    pushReleaseVersionBranch = "release"
     git {
         requireBranch.set("main") // или другая ветка, которую вы используете
     }
