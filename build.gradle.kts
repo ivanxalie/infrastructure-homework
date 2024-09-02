@@ -1,3 +1,4 @@
+import net.researchgate.release.GitAdapter
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 project.base.archivesName.set("people")
@@ -9,6 +10,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.jpa") version "1.9.0" apply false
     id("io.gitlab.arturbosch.detekt") version "1.23.1"
     id("com.github.ben-manes.versions") version "0.48.0"
+    id("net.researchgate.release") version "2.8.1"
 }
 
 allprojects {
@@ -79,6 +81,17 @@ dependencies {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("io.projectreactor:reactor-test")
+}
+
+release {
+    // Настройка плагина, если требуется
+    scmAdapters = listOf(GitAdapter::class.java)
+    failOnSnapshotDependencies = true // Прерывать сборку, если найдены зависимости-снапшоты
+    revertOnFail = true // Откатывать изменения в случае неудачи
+    preCommitText = "[Gradle Release Plugin] - pre tag commit: " // Текст для коммита перед релизом
+    preTagCommitMessage = "[Gradle Release Plugin] - creating tag: " // Сообщение коммита перед созданием тега
+    tagTemplate = "\${version}" // Шаблон для имени тега
+    newVersionCommitMessage = "[Gradle Release Plugin] - new version commit: " // Сообщение коммита с новой версией
 }
 
 tasks.test {
