@@ -10,7 +10,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.jpa") version "1.9.0" apply false
     id("io.gitlab.arturbosch.detekt") version "1.23.1"
     id("com.github.ben-manes.versions") version "0.48.0"
-    id("net.researchgate.release") version "2.8.1"
+    id("net.researchgate.release") version "3.0.2"
 }
 
 allprojects {
